@@ -1,0 +1,2 @@
+mvn install:install-file -Dfile=beautyeye_lnf.jar -DgroupId=fakepath -DartifactId=beautyeye -Dversion=3 -Dpackaging=jar
+mvn install:install-file -Dfile=jintellitype-1.3.9.jar -DgroupId=com.melloware -DartifactId=jintellitype -Dversion=1.3.9 -Dpackaging=jar
