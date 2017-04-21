@@ -4,17 +4,16 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.puyixiaowo.quickrun.constants.Constants;
 import com.puyixiaowo.quickrun.dialog.MainDialog;
-import com.puyixiaowo.quickrun.enums.Colors;
 import com.puyixiaowo.quickrun.handler.KeyHandler;
 import com.puyixiaowo.quickrun.handler.MouseClickHandler;
 import com.puyixiaowo.quickrun.handler.MouseMovedHandler;
 import com.puyixiaowo.quickrun.handler.menu.right.DeleteShortCutHandler;
 import com.puyixiaowo.quickrun.handler.menu.right.EditShortCutHandler;
 import com.puyixiaowo.quickrun.renderer.CellRenderer;
-import com.puyixiaowo.quickrun.utils.ColorUtil;
 import com.puyixiaowo.quickrun.utils.EncryptUtils;
 import com.puyixiaowo.quickrun.utils.FileUtil;
 import com.puyixiaowo.quickrun.utils.ResourceUtil;
+import com.puyixiaowo.quickrun.utils.ThemeUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,7 +55,7 @@ public class Config {
 		list.addMouseMotionListener(new MouseMovedHandler());
 		list.setCellRenderer(new CellRenderer());
 		list.setFixedCellHeight(18);
-		list.setBackground(ColorUtil.string2Color(Colors.BG_MAIN.color));
+		list.setBackground(ThemeUtils.getHeadBgColor());
 
 
 		//右键菜单start

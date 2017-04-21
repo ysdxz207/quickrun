@@ -3,13 +3,13 @@ package com.puyixiaowo.quickrun.dialog;
 import com.melloware.jintellitype.JIntellitype;
 import com.puyixiaowo.quickrun.entity.Config;
 import com.puyixiaowo.quickrun.entity.ShortCut;
-import com.puyixiaowo.quickrun.enums.Colors;
 import com.puyixiaowo.quickrun.handler.HeaderMouseClickHandler;
 import com.puyixiaowo.quickrun.handler.HeaderMouseDragHandler;
+import com.puyixiaowo.quickrun.panel.RootPanel;
 import com.puyixiaowo.quickrun.tray.MainTray;
-import com.puyixiaowo.quickrun.utils.ColorUtil;
 import com.puyixiaowo.quickrun.utils.ResourceUtil;
 import com.puyixiaowo.quickrun.utils.ShortCutUtils;
+import com.puyixiaowo.quickrun.utils.ThemeUtils;
 import com.sun.awt.AWTUtilities;
 
 import javax.swing.*;
@@ -31,12 +31,14 @@ import java.util.List;
  */
 public class MainDialog extends JFrame {
 	private static final String TITLE = "";
-	private static final int WIDTH = 220;
-	private static final int HEIGHT = 560;
-	private static final int HEIGHT_HEAD = 30;
+	public static final int WIDTH = 220;
+	public static final int HEIGHT = 800;
+	//private static final int HEIGHT_HEAD = 30;
+	//public static final int POSITION_HEAD = 40;
+	public static final int HEIGHT_MAIN_LIST = 530;
 
 	//定义热键标识，用于在设置多个热键时，在事件处理中区分用户按下的热键
-	private static final int SHOW_KEY_MARK = 1;
+	public static final int SHOW_KEY_MARK = 1;
 
 	private DefaultListModel<ShortCut> shortCutList;//快捷方式列表
 
@@ -51,8 +53,9 @@ public class MainDialog extends JFrame {
 		setTitle(TITLE);
 		setSize(WIDTH, HEIGHT);
 		setResizable(false);
-		setLocationRelativeTo(null);
+		//setLocationRelativeTo(null);
 		setAlwaysOnTop(true);//置顶
+		center();
 
 		setUndecorated(true);
 		AWTUtilities.setWindowOpaque(this, false);
@@ -63,7 +66,7 @@ public class MainDialog extends JFrame {
 
 		//显示桌面则最小化到托盘
 		addWindowListener(new WindowAdapter() {
-			public void windowIconified(WindowEvent e){
+			public void windowIconified(WindowEvent e) {
 				dispose();//窗口最小化时dispose该窗口
 			}
 		});
@@ -74,6 +77,16 @@ public class MainDialog extends JFrame {
 		setVisible(true);
 	}
 
+	private void center() {
+		Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) screensize.getWidth();//屏幕宽度
+		int height = (int) screensize.getHeight();//屏幕高度
+		int x = (width - WIDTH) / 2;
+		int y = (height - HEIGHT_MAIN_LIST + RootPanel.height) / 2 - HEIGHT + HEIGHT_MAIN_LIST - RootPanel.height;
+		System.out.println(y);
+		setLocation(x, y);
+	}
+
 	private void initUI() {
 		new MainTray(this);//托盘
 		setIconImage(ResourceUtil.getImageIcon("icon.png").getImage());
@@ -81,19 +94,19 @@ public class MainDialog extends JFrame {
 	}
 
 	private void initPanel() {
-		//头部
-		JPanel panelHead = new JPanel();
-		panelHead.setToolTipText("右键隐藏窗口");
-		panelHead.setBackground(ColorUtil.string2Color(Colors.BG_HEADER.color));
-		panelHead.setBounds(0, 0, WIDTH, HEIGHT_HEAD);
-		panelHead.addMouseListener(new HeaderMouseClickHandler());
-		panelHead.addMouseMotionListener(new HeaderMouseDragHandler());
-		panelHead.setCursor(new Cursor(Cursor.MOVE_CURSOR));
+		JPanel panelRoot = new RootPanel();
+		panelRoot.setToolTipText("右键隐藏窗口");
+		panelRoot.addMouseListener(new HeaderMouseClickHandler());
+		panelRoot.addMouseMotionListener(new HeaderMouseDragHandler());
+		panelRoot.setCursor(new Cursor(Cursor.MOVE_CURSOR));
+		setContentPane(panelRoot);
+
 
 		panel = new JScrollPane();
 		panel.setHorizontalScrollBar(null);
-		panel.setBackground(ColorUtil.string2Color(Colors.BG_MAIN.color));
-		panel.setLocation(0, HEIGHT_HEAD);
+		panel.setBackground(ThemeUtils.getHeadBgColor());
+		panel.setBounds(0, HEIGHT - HEIGHT_MAIN_LIST, WIDTH, HEIGHT_MAIN_LIST);
+		panel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
 		initHotKey();//初始化快捷键
 
@@ -101,15 +114,15 @@ public class MainDialog extends JFrame {
 
 		initDrag(panel);
 
-		add(panelHead);
-		add(panel);
+		//panelRoot.add(panelHead);
+		panelRoot.add(panel);
 
 	}
 
 	private void initData(JScrollPane pane) {
 		pane.setViewportView(Config.getConfigJList());
 		//设置边框透明，右移列表项4个像素
-		pane.setBorder(BorderFactory.createEmptyBorder(HEIGHT_HEAD, 4, 2, 2));
+		pane.setBorder(BorderFactory.createEmptyBorder(4, 4, 2, 2));
 	}
 
 	private void initDrag(JScrollPane panel)//定义的拖拽方法
@@ -166,12 +179,13 @@ public class MainDialog extends JFrame {
 	public static void showDialog() {
 		mainDialog.setVisible(true);
 	}
+
 	public static void hideDialog() {
 		mainDialog.setVisible(false);
 	}
 
 
-	public void showOrHide(){
+	public void showOrHide() {
 		if (isShowing()) {
 			setVisible(false);
 		} else {
@@ -183,7 +197,7 @@ public class MainDialog extends JFrame {
 	/**
 	 * 刷新列表并选中
 	 */
-	public static void refreshJList(int index){
+	public static void refreshJList(int index) {
 		panel.setViewportView(Config.getConfigJList());
 		JList jList = (JList) panel.getViewport().getComponent(0);
 		jList.requestFocus();//设置jlist焦点，否则刷新后无法使用键盘

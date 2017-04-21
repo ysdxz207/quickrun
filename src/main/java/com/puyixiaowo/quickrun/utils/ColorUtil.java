@@ -14,7 +14,7 @@ public class ColorUtil {
 		B = B.length() < 2 ? ('0' + B) : B;
 		String G = Integer.toHexString(color.getGreen());
 		G = G.length() < 2 ? ('0' + G) : G;
-		return '#' + R + B + G;
+		return '#' + R + G + B;
 	}
 
 	public static Color string2Color(String str) {
