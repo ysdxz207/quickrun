@@ -5,16 +5,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.puyixiaowo.quickrun.constants.Constants;
 import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.enums.Colors;
+import com.puyixiaowo.quickrun.enums.ShortCutStatus;
 import com.puyixiaowo.quickrun.handler.KeyHandler;
 import com.puyixiaowo.quickrun.handler.MouseClickHandler;
 import com.puyixiaowo.quickrun.handler.MouseMovedHandler;
 import com.puyixiaowo.quickrun.handler.menu.right.DeleteShortCutHandler;
 import com.puyixiaowo.quickrun.handler.menu.right.EditShortCutHandler;
 import com.puyixiaowo.quickrun.renderer.CellRenderer;
-import com.puyixiaowo.quickrun.utils.ColorUtil;
-import com.puyixiaowo.quickrun.utils.EncryptUtils;
-import com.puyixiaowo.quickrun.utils.FileUtil;
-import com.puyixiaowo.quickrun.utils.ResourceUtil;
+import com.puyixiaowo.quickrun.utils.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -90,7 +88,16 @@ public class Config {
 		DefaultListModel<ShortCut> listModel = new DefaultListModel<>();
 		for (int i = 0; i < config.size(); i++) {
 			JSONObject obj = config.getJSONObject(i);
-			listModel.addElement(obj.toJavaObject(ShortCut.class));
+			ShortCut shortCut = obj.toJavaObject(ShortCut.class);
+			//刷新快捷方式状态
+			if (StringUtils.isBlank(shortCut.getLink())) {
+				shortCut.setStatus(ShortCutStatus.EMPTY_PATH.status);
+			} else if (!new File(shortCut.getLink()).exists()) {
+				shortCut.setStatus(ShortCutStatus.NOT_EXISTS.status);
+			} else {
+				shortCut.setStatus(ShortCutStatus.USEABLE.status);
+			}
+			listModel.addElement(shortCut);
 		}
 		return listModel;
 	}

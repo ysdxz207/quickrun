@@ -52,26 +52,20 @@ public class CellRenderer extends JLabel implements ListCellRenderer, Serializab
 			// 设置选取与取消选取的前景与背景颜色.
 			setBackground(Color.WHITE);
 			switch (ShortCutStatus.getEnumByStatus(shortCut.getStatus())) {
-				case USEABLE:
-					setForeground(ColorUtil.string2Color(Colors.COLOR_SHORTCUT_USEABLE.color));
-					break;
 
 				case EMPTY_PATH:
 					setForeground(ColorUtil.string2Color(Colors.COLOR_SHORTCUT_EMPTY_PATH.color));
 					break;
 				case NOT_EXISTS:
 					setForeground(ColorUtil.string2Color(Colors.GETCOLOR_SHORTCUT_NOT_EXISTS.color));
-
+					break;
+				default:
+					setForeground(ColorUtil.string2Color(Colors.COLOR_SHORTCUT_USEABLE.color));
+					break;
 			}
-
-		}
-		//setBorder(BorderFactory.createLineBorder(ColorUtil.string2Color("#dddddd"), 1));
-
-		if (!isSelected) {
 			setBackground(index == Constants.hoverIndex
 					? ColorUtil.string2Color(Colors.BG_LIST_HOVER.color) : list.getBackground());
-			setForeground(index == Constants.hoverIndex
-					? ColorUtil.string2Color(Colors.FG_LIST_HOVER.color) : list.getForeground());
+
 		}
 
 		return this;

@@ -13,7 +13,7 @@ public enum Colors {
 	BG_LIST_HOVER("#ffc86a", "列表鼠标hover背景色"),
 	FG_LIST_HOVER("#000000", "列表鼠标hover前景色"),
 	COLOR_SHORTCUT_USEABLE("#000000", "快捷键正常可用"),
-	COLOR_SHORTCUT_EMPTY_PATH("#FDBC40", "无法获取目标路径"),
+	COLOR_SHORTCUT_EMPTY_PATH("#c0c0c0", "无法获取目标路径"),
 	GETCOLOR_SHORTCUT_NOT_EXISTS("#ea2000", "目标路径不存在");
 
 	Colors(String color, String description) {
