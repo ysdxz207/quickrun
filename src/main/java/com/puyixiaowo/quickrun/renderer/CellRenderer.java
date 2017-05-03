@@ -42,7 +42,7 @@ public class CellRenderer extends JLabel implements ListCellRenderer, Serializab
 			setIcon(icon);
 		}
 		setText(value.toString());
-		setFont(new Font("仿宋", 0, 18));
+		setFont(new Font("宋体", 0, 18));
 		setOpaque(true);//设置不透明，背景色才会生效
 
 		if (isSelected) {
