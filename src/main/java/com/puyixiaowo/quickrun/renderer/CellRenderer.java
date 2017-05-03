@@ -55,9 +55,11 @@ public class CellRenderer extends JLabel implements ListCellRenderer, Serializab
 
 				case EMPTY_PATH:
 					setForeground(ColorUtil.string2Color(Colors.COLOR_SHORTCUT_EMPTY_PATH.color));
+					setFont(new Font("仿宋", 1, 18));
 					break;
 				case NOT_EXISTS:
 					setForeground(ColorUtil.string2Color(Colors.GETCOLOR_SHORTCUT_NOT_EXISTS.color));
+					setFont(new Font("仿宋", 2, 18));
 					break;
 				default:
 					setForeground(ColorUtil.string2Color(Colors.COLOR_SHORTCUT_USEABLE.color));
