@@ -132,7 +132,7 @@ public class Config {
 	 */
 	public Config() {
 		rootPath = getConfigDir();
-		rootconfigPath = getRootConfigPaht();
+		rootconfigPath = getRootConfigPath();
 		configFilePath = rootconfigPath + "conf/";
 	}
 
@@ -141,7 +141,7 @@ public class Config {
 	 *
 	 * @return
 	 */
-	private String getRootConfigPaht() {
+	private String getRootConfigPath() {
 
 		return System.getProperty("user.dir") + "/";
 	}
