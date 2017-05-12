@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.Iterator;
 
 /**
- * @author weishaoqiang
+ * @author huangfeihong
  * @date 2016年12月24日 下午3:33:17
  */
 public class Config {
@@ -216,9 +216,8 @@ public class Config {
 
 		if (isShortCutConfExists(shortCut)) {
 			//提示是否覆盖
-			JOptionPane.showMessageDialog(MainDialog.mainDialog,
-					"快捷方式[" + shortCut.getName() + "]已存在",
-					"添加快捷方式错误", JOptionPane.ERROR_MESSAGE);
+			Message.error(MainDialog.self,
+					"快捷方式[" + shortCut.getName() + "]已存在");
 		} else {
 			// 创建新的配置
 			config.add(JSONObject.toJSON(shortCut));

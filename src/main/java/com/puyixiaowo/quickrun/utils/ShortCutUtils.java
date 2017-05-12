@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-10 16:21
+ * @author huangfeihong
+ * @date 2017-03-10
  */
 public class ShortCutUtils {
 	public static DefaultListModel<ShortCut> convertToShortCutList(List<File> list) throws IOException, ShellLinkException {

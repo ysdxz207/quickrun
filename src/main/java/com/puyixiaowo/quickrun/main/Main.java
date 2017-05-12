@@ -1,16 +1,19 @@
 package com.puyixiaowo.quickrun.main;
 
 import com.puyixiaowo.quickrun.dialog.MainDialog;
+import com.puyixiaowo.quickrun.utils.AppUtils;
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import javax.swing.*;
 
 /**
- * @author weishaoqiang
+ * @author huangfeihong
  * @date 2016年12月25日 下午5:33:49
  */
 public class Main {
 	public static void main(String[] args) {
+		AppUtils.checkIfRunning();
+
 		try {
 			// 设置此开关量为false即表示关闭之，BeautyEye LNF中默认是true
 			BeautyEyeLNFHelper.translucencyAtFrameInactive = false;

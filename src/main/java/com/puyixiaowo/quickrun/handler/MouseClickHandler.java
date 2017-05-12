@@ -17,7 +17,7 @@ import java.io.IOException;
 
 /**
  * @author feihong
- * @date 2017-03-10 23:45
+ * @date 2017-03-10
  */
 public class MouseClickHandler extends MouseAdapter {
     @Override

@@ -3,8 +3,8 @@ package com.puyixiaowo.quickrun.constants;
 import com.alibaba.fastjson.JSONArray;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-10 17:07
+ * @author huangfeihong
+ * @date 2017-03-10
  */
 public class Constants {
 	/**
@@ -32,4 +32,5 @@ public class Constants {
 	 * 图标大小
 	 */
 	public static int  ICON_SIZE = 16;
+
 }

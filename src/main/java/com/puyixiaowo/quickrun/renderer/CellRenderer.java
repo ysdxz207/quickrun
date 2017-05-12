@@ -17,8 +17,8 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-13 15:33
+ * @author huangfeihong
+ * @date 2017-03-13
  */
 public class CellRenderer extends JLabel implements ListCellRenderer, Serializable {
 

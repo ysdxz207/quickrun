@@ -10,15 +10,15 @@ import java.awt.event.MouseEvent;
 
 /**
  * @author feihong
- * @date 2017-03-31 17:10
+ * @date 2017-03-31
  */
 public class HeaderMouseDragHandler extends MouseAdapter {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        Point pWin = MainDialog.mainDialog.getLocation();
+        Point pWin = MainDialog.self.getLocation();
         Point p = new Point();
         p.setLocation(pWin.getX() + e.getX() - MainDialog.pointHeader.getX(), pWin.getY() + e.getY() - MainDialog.pointHeader.getY());
-        MainDialog.mainDialog.setLocation(p);
+        MainDialog.self.setLocation(p);
     }
 }

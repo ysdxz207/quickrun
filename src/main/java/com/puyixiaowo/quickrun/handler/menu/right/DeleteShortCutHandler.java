@@ -9,8 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-17 11:53
+ * @author huangfeihong
+ * @date 2017-03-17
  */
 public class DeleteShortCutHandler implements ActionListener {
 	@Override

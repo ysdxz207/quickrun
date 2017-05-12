@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-17 16:04
+ * @author huangfeihong
+ * @date 2017-03-17
  */
 public class ImageUtils {
 	public static BufferedImage convertToBufferedImage(Image image) {

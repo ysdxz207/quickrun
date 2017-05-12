@@ -1,8 +1,8 @@
 package com.puyixiaowo.quickrun.utils;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-17 14:04
+ * @author huangfeihong
+ * @date 2017-03-17
  */
 public class StringUtils {
 

@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 
 /**
  * 修改快捷键信息确定按钮
- * @author weishaoqiang
- * @date 2017-03-17 11:08
+ * @author huangfeihong
+ * @date 2017-03-17
  */
 public class EditSaveShortCutHandler implements ActionListener{
 	@Override

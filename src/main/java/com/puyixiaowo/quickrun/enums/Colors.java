@@ -2,8 +2,8 @@ package com.puyixiaowo.quickrun.enums;
 
 /**
  *
- * @author weishaoqiang
- * @date 2017-03-31 16:48:55
+ * @author huangfeihong
+ * @date 2017-03-31
  */
 public enum Colors {
 	BG_MAIN("#caffca", "主窗口背景色"),

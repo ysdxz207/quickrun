@@ -3,8 +3,8 @@ package com.puyixiaowo.quickrun.entity;
 /**
  * 快捷方式
  *
- * @author weishaoqiang
- * @date 2017-03-10 16:17
+ * @author huangfeihong
+ * @date 2017-03-10
  */
 public class ShortCut {
 	private String name;

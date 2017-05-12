@@ -14,7 +14,7 @@ import java.io.IOException;
 
 /**
  * @author feihong
- * @date 2017-03-11 0:07
+ * @date 2017-03-11
  */
 public class KeyHandler extends KeyAdapter {
 

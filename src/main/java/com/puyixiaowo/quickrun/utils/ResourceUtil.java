@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author weishaoqiang
+ * @author huangfeihong
  * @date 2016年12月25日 下午10:02:10
  */
 public class ResourceUtil {

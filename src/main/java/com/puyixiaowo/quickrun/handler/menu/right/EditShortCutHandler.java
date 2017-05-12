@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 
 /**
  * 编辑快捷键右键菜单选项
- * @author weishaoqiang
- * @date 2017-03-16 16:01
+ * @author huangfeihong
+ * @date 2017-03-16
  */
 public class EditShortCutHandler implements ActionListener{
 	@Override
@@ -25,7 +25,7 @@ public class EditShortCutHandler implements ActionListener{
 			shortCut.setIndex(jList.getSelectedIndex());
 
 			//编辑快捷键对话框
-			new EditShortCutDialog(MainDialog.mainDialog, "编辑快捷方式", true).showDialog(shortCut);
+			new EditShortCutDialog(MainDialog.self, "编辑快捷方式", true).showDialog(shortCut);
 		}
 	}
 }

@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-13 15:26
+ * @author huangfeihong
+ * @date 2017-03-13
  */
 public class IconUtils {
 

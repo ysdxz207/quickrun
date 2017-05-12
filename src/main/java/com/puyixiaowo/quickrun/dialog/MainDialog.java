@@ -26,8 +26,8 @@ import java.io.File;
 import java.util.List;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-10 13:37
+ * @author huangfeihong
+ * @date 2017-03-10
  */
 public class MainDialog extends JFrame {
 	private static final String TITLE = "";
@@ -40,14 +40,14 @@ public class MainDialog extends JFrame {
 
 	private DefaultListModel<ShortCut> shortCutList;//快捷方式列表
 
-	public static MainDialog mainDialog;
+	public static MainDialog self;
 
 	private static JScrollPane panel;
 
 	public static Point pointHeader = new Point();
 
 	public MainDialog() {
-		mainDialog = this;
+		self = this;
 		setTitle(TITLE);
 		setSize(WIDTH, HEIGHT);
 		setResizable(false);
@@ -164,10 +164,10 @@ public class MainDialog extends JFrame {
 	}
 
 	public static void showDialog() {
-		mainDialog.setVisible(true);
+		self.setVisible(true);
 	}
 	public static void hideDialog() {
-		mainDialog.setVisible(false);
+		self.setVisible(false);
 	}
 
 

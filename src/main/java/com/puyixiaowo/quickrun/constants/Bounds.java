@@ -3,8 +3,8 @@ package com.puyixiaowo.quickrun.constants;
 import java.awt.*;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-17 15:02
+ * @author huangfeihong
+ * @date 2017-03-17
  */
 public class Bounds {
 

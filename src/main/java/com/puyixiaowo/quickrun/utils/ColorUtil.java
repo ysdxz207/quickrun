@@ -3,7 +3,7 @@ package com.puyixiaowo.quickrun.utils;
 import java.awt.Color;
 
 /**
- * @author weishaoqiang
+ * @author huangfeihong
  * @date 2016年12月12日 下午10:43:03
  */
 public class ColorUtil {

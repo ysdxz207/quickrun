@@ -15,8 +15,8 @@ import java.io.IOException;
 
 /**
  * 提取图标按钮
- * @author weishaoqiang
- * @date 2017-03-17 14:51
+ * @author huangfeihong
+ * @date 2017-03-17
  */
 public class ExtractIconCutHandler implements ActionListener {
 	final JFileChooser fc = new JFileChooser();

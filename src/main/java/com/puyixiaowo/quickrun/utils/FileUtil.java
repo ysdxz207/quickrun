@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  * 
- * @author weishaoqiang
+ * @author huangfeihong
  * @date 2016年12月24日 下午1:20:13
  */
 public class FileUtil {

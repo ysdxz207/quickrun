@@ -1,8 +1,8 @@
 package com.puyixiaowo.quickrun.enums;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-17 17:33
+ * @author huangfeihong
+ * @date 2017-03-17
  */
 public enum  ShortCutStatus {
 	USEABLE(1, "正常可用"),

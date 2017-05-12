@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * @author feihong
- * @date 2017-03-10 23:45
+ * @date 2017-03-10
  */
 public class MouseMovedHandler extends MouseAdapter {
 

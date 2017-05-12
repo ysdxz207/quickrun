@@ -6,8 +6,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * @author weishaoqiang
- * @date 2017-04-01 9:58
+ * @author huangfeihong
+ * @date 2017-04-01
  */
 public class HeaderMouseClickHandler extends MouseAdapter {
 

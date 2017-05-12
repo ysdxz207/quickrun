@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * @author feihong
- * @date 2017-03-10 23:10
+ * @date 2017-03-10
  */
 public class SelectShortCutHandler implements ListSelectionListener {
     @Override

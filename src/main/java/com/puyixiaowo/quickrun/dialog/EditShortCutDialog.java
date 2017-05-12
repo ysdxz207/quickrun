@@ -12,8 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-17 10:38
+ * @author huangfeihong
+ * @date 2017-03-17
  */
 public class EditShortCutDialog extends JDialog {
     private static final int width = 420;

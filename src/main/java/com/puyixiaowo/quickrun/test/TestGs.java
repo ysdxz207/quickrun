@@ -6,8 +6,8 @@ import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 
 /**
- * @author weishaoqiang
- * @date 2017-03-31 17:41
+ * @author huangfeihong
+ * @date 2017-03-31
  */
 public class TestGs extends JFrame{
 
