@@ -5,6 +5,7 @@ import com.puyixiaowo.quickrun.entity.Config;
 import com.puyixiaowo.quickrun.entity.ShortCut;
 import com.puyixiaowo.quickrun.utils.IconUtils;
 import com.puyixiaowo.quickrun.utils.ImageUtils;
+import com.puyixiaowo.quickrun.utils.Message;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -27,7 +28,7 @@ public class ExtractIconCutHandler implements ActionListener {
 		String rootAbsolutePath = Config.getInstance().getRootconfigPath() + Config.ICON_DIR;
 		String iconPath = shortCut.getName() + ".png";
 		fc.setCurrentDirectory(new File(rootAbsolutePath));
-		int returnVal = fc.showOpenDialog(EditShortCutDialog.self);
+		int returnVal = fc.showOpenDialog(EditShortCutDialog.getInstance());
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File file = fc.getSelectedFile();//选中文件
@@ -43,7 +44,7 @@ public class ExtractIconCutHandler implements ActionListener {
 				icon = IconUtils.getIcon(file, 64);//获取程序图标
 			}
 			if (icon == null) {
-				JOptionPane.showMessageDialog(null, "无法获取图标", "错误",JOptionPane.ERROR_MESSAGE);
+				Message.error(null, "无法获取图标");
 				return;
 			}
 

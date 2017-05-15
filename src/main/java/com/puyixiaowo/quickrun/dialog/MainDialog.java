@@ -40,14 +40,27 @@ public class MainDialog extends JFrame {
 
 	private DefaultListModel<ShortCut> shortCutList;//快捷方式列表
 
-	public static MainDialog self;
-
 	private static JScrollPane panel;
 
 	public static Point pointHeader = new Point();
 
+
+	public static MainDialog getInstance(){
+		return MainDialogEnum.INSTANCE.singleton;
+	}
+
+
+	private enum MainDialogEnum {
+		INSTANCE;
+
+		MainDialogEnum() {
+			singleton = new MainDialog();
+		}
+
+		private MainDialog singleton;
+	}
+
 	public MainDialog() {
-		self = this;
 		setTitle(TITLE);
 		setSize(WIDTH, HEIGHT);
 		setResizable(false);
@@ -136,7 +149,6 @@ public class MainDialog extends JFrame {
 //						String temp = "";
 //						for (File file : list)
 //							temp += ShortCutUtils.parseRealPath(file) + ";\n";
-//						JOptionPane.showMessageDialog(null, temp);
 						dtde.dropComplete(true);//指示拖拽操作已完成
 					} else {
 						dtde.rejectDrop();//否则拒绝拖拽来的数据
@@ -164,10 +176,10 @@ public class MainDialog extends JFrame {
 	}
 
 	public static void showDialog() {
-		self.setVisible(true);
+		getInstance().setVisible(true);
 	}
 	public static void hideDialog() {
-		self.setVisible(false);
+		getInstance().setVisible(false);
 	}
 
 

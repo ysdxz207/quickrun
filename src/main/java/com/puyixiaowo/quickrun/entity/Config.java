@@ -26,12 +26,26 @@ import java.util.Iterator;
 public class Config {
 
 	// 使用volatile关键字保其可见性
-	volatile private static Config instance = null;
 	private static String rootPath;
 	private static String rootconfigPath;
 	private static String configFilePath;
 
 	public static String ICON_DIR = "icon/";
+
+
+	public static Config getInstance() {
+
+		return ConfigEnum.INSTANCE.singleton;
+	}
+
+	private enum ConfigEnum {
+		INSTANCE;
+
+		ConfigEnum() {
+			singleton = new Config();
+		}
+		private Config singleton;
+	}
 
 	public static JList getConfigJList() {
 
@@ -106,24 +120,7 @@ public class Config {
 		return configFilePath;
 	}
 
-	public static Config getInstance() {
-		try {
-			if (instance != null) {// 懒汉式
 
-			} else {
-				// 创建实例之前可能会有一些准备性的耗时工作
-				Thread.sleep(300);
-				synchronized (Config.class) {
-					if (instance == null) {// 二次检查
-						instance = new Config();
-					}
-				}
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return instance;
-	}
 
 	//////////////////////////////
 
@@ -216,7 +213,7 @@ public class Config {
 
 		if (isShortCutConfExists(shortCut)) {
 			//提示是否覆盖
-			Message.error(MainDialog.self,
+			Message.error(MainDialog.getInstance(),
 					"快捷方式[" + shortCut.getName() + "]已存在");
 		} else {
 			// 创建新的配置

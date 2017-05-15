@@ -3,6 +3,7 @@ package com.puyixiaowo.quickrun.utils;
 import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.entity.ShortCut;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -10,11 +11,13 @@ import java.io.IOException;
  * @author huangfeihong
  * @date 2017-03-10
  */
-public class ExeUtils {
-	public static boolean run(ShortCut shortCut) throws IOException {
+public class ExecUtils {
+	public static boolean run(ShortCut shortCut) {
 		String command = "";
 
-		if (StringUtils.isBlank(shortCut.getLink())) {
+		if (StringUtils.isBlank(shortCut.getLink()) ||
+				!new File(shortCut.getLink()).exists()) {
+			Message.error(MainDialog.getInstance(), "运行“" + shortCut.getName() + "”失败，请确保目标路径可用。");
 			return false;
 		}
 		command = "cmd /c start /B " +
@@ -24,7 +27,11 @@ public class ExeUtils {
 			command += " " + shortCut.getCmdArgs();
 		}
 
-		return run(command);
+		try {
+			return run(command);
+		} catch (IOException e) {
+		}
+		return false;
 	}
 
 	public static boolean run(String command) throws IOException {

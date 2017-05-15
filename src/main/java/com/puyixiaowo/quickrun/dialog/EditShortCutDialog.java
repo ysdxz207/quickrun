@@ -18,19 +18,43 @@ import java.awt.event.KeyEvent;
 public class EditShortCutDialog extends JDialog {
     private static final int width = 420;
     private static final int height = 290;
-    public static EditShortCutDialog self;
-    private static JTextField textFieldName;
-    private static JTextField textFieldLink;
-    private static JTextField textFieldCmdArgs;
-    private static JTextField textFieldTextIcon;
-    private static JButton buttonSave;
     public static ShortCut shortCut;
-    private static JPanel panel;
+    private static JPanel panel = new JPanel();
 
+
+    ///////
+    private static final JLabel lebelName = new JLabel("显示名：");
+    private static final JLabel lebelLink = new JLabel("目标：");
+    private static final JLabel lebelCmdArgs = new JLabel("参数：");
+    private static final JLabel lebelTextIcon = new JLabel("图标路径：");
+    private static final JButton buttonGetIcon = new JButton("+");
+
+    private static JTextField textFieldName = new JTextField();
+    private static JTextField textFieldLink = new JTextField();
+    private static JTextField textFieldCmdArgs = new JTextField();
+    private static JTextField textFieldTextIcon = new JTextField();
+    private static JButton buttonSave = new JButton("保存");
+
+    {
+        initUI();
+    }
+
+    public static EditShortCutDialog getInstance(){
+        return EditShortCutDialogEnum.INSTANCE.singleton;
+    }
+
+    private enum EditShortCutDialogEnum {
+        INSTANCE(MainDialog.getInstance());
+
+        EditShortCutDialogEnum(JFrame parent) {
+            singleton = new EditShortCutDialog(parent, "编辑快捷方式", true);
+        }
+
+        private EditShortCutDialog singleton;
+    }
 
     public EditShortCutDialog(Frame owner, String title, boolean modal) {
         super(owner, title, modal);
-        self = this;
     }
 
     /**
@@ -50,48 +74,47 @@ public class EditShortCutDialog extends JDialog {
         return rootPane;
     }
 
-    private void initUI(ShortCut shortCut) {
+    private void initUI() {
         setSize(width, height);
         setResizable(false);
         setVisible(false);
         setLocationRelativeTo(null);
 
-        panel = new JPanel();
         panel.setLayout(null);
 
-        JLabel lebelName = new JLabel("显示名：");
+
         lebelName.setBounds(Bounds.edit_shorcut_label_name);
         panel.add(lebelName);
 
-        textFieldName = new JTextField(shortCut.getName());
+
         textFieldName.setBounds(Bounds.edit_shorcut_filed_name);
         panel.add(textFieldName);
 
-        JLabel lebelLink = new JLabel("目标：");
+
         lebelLink.setBounds(Bounds.edit_shorcut_label_link);
         panel.add(lebelLink);
 
-        textFieldLink = new JTextField(shortCut.getLink());
+
         textFieldLink.setBounds(Bounds.edit_shorcut_filed_link);
         panel.add(textFieldLink);
 
-        JLabel lebelCmdArgs = new JLabel("参数：");
+
         lebelCmdArgs.setBounds(Bounds.edit_shorcut_label_cmd_args);
         panel.add(lebelCmdArgs);
 
-        textFieldCmdArgs = new JTextField(shortCut.getCmdArgs());
+
         textFieldCmdArgs.setBounds(Bounds.edit_shorcut_filed_cmd_args);
         panel.add(textFieldCmdArgs);
 
-        JLabel lebelTextIcon = new JLabel("图标路径：");
+
         lebelTextIcon.setBounds(Bounds.edit_shorcut_label_text_icon);
         panel.add(lebelTextIcon);
 
-        textFieldTextIcon = new JTextField(shortCut.getTextIcon());
+
         textFieldTextIcon.setBounds(Bounds.edit_shorcut_filed_text_icon);
         panel.add(textFieldTextIcon);
 
-        JButton buttonGetIcon = new JButton("+");
+
         buttonGetIcon.addActionListener(new ExtractIconCutHandler());
         buttonGetIcon.setBounds(Bounds.edit_shorcut_button_get_icon);
         buttonGetIcon.setForeground(ColorUtil.string2Color("#00bb17"));
@@ -99,7 +122,7 @@ public class EditShortCutDialog extends JDialog {
         buttonGetIcon.setToolTipText("选择图片或从其他程序中提取图标");
         panel.add(buttonGetIcon);
 
-        buttonSave = new JButton("确定");
+
         buttonSave.addActionListener(new EditSaveShortCutHandler());
         buttonSave.setBounds(Bounds.edit_shorcut_button_save);
         panel.add(buttonSave);
@@ -108,27 +131,21 @@ public class EditShortCutDialog extends JDialog {
     }
 
     public static void showDialog(ShortCut shortCut) {
-
-        self.shortCut = shortCut;
-        self.initUI(shortCut);
-        self.setVisible(true);
+        fillData(shortCut);
+        getInstance().setVisible(true);
     }
 
-    /**
-     * 填充数据
-     *
-     * @param shortCut
-     */
-    public static void fillData(ShortCut shortCut) {
-        Component component = panel.getComponentAt(Bounds.edit_shorcut_filed_text_icon.getLocation());
-        if (component != null && component instanceof JTextField) {
-            ((JTextField) component).setText(shortCut.getTextIcon());
-            component.repaint();
-        }
+    public static void fillData(ShortCut shortCut){
+        EditShortCutDialog.shortCut = shortCut;
+
+        textFieldName.setText(shortCut.getName());
+        textFieldLink.setText(shortCut.getLink());
+        textFieldCmdArgs.setText(shortCut.getCmdArgs());
+        textFieldTextIcon.setText(shortCut.getTextIcon());
     }
 
     public static void hideDialog() {
-        self.setVisible(false);
+        getInstance().setVisible(false);
     }
 
 

@@ -2,6 +2,7 @@ package com.puyixiaowo.quickrun.main;
 
 import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.utils.AppUtils;
+import com.puyixiaowo.quickrun.utils.Message;
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import javax.swing.*;
@@ -22,10 +23,9 @@ public class Main {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);// 关闭设置按钮
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(),
-					"错误", JOptionPane.ERROR_MESSAGE);
+			Message.error(null, e.getMessage());
 		}
 
-		new MainDialog();
+		MainDialog.getInstance();
 	}
 }

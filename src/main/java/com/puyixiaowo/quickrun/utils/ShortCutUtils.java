@@ -47,7 +47,7 @@ public class ShortCutUtils {
                         }
                     }
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "获取目标异常：" + e.getMessage(), "错误",JOptionPane.ERROR_MESSAGE);
+					Message.error(null, "获取目标异常：" + e.getMessage());
 				}
 			} else {
 				path = file.getAbsolutePath();

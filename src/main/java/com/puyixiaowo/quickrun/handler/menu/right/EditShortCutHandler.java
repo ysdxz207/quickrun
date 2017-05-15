@@ -1,7 +1,6 @@
 package com.puyixiaowo.quickrun.handler.menu.right;
 
 import com.puyixiaowo.quickrun.dialog.EditShortCutDialog;
-import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.entity.ShortCut;
 
 import javax.swing.*;
@@ -25,7 +24,7 @@ public class EditShortCutHandler implements ActionListener{
 			shortCut.setIndex(jList.getSelectedIndex());
 
 			//编辑快捷键对话框
-			new EditShortCutDialog(MainDialog.self, "编辑快捷方式", true).showDialog(shortCut);
+			EditShortCutDialog.showDialog(shortCut);
 		}
 	}
 }

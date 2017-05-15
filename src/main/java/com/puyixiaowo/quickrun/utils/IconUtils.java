@@ -18,7 +18,7 @@ public class IconUtils {
 		try {
 			shellFolder = ShellFolder.getShellFolder(file);
 		} catch (FileNotFoundException e) {
-			//JOptionPane.showMessageDialog(null, "获取图标异常：" + e.getMessage(), "错误",JOptionPane.ERROR_MESSAGE);
+			//Message.error(null, "获取图标异常：" + e.getMessage());
 		}
 		if (shellFolder != null) {
 			icon = new ImageIcon(shellFolder.getIcon(true).getScaledInstance(size, size, java.awt.Image.SCALE_SMOOTH));

@@ -3,12 +3,11 @@ package com.puyixiaowo.quickrun.handler;/**
  */
 
 import com.puyixiaowo.quickrun.entity.ShortCut;
-import com.puyixiaowo.quickrun.utils.ExeUtils;
+import com.puyixiaowo.quickrun.utils.ExecUtils;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.io.IOException;
 
 /**
  * @author feihong
@@ -21,11 +20,7 @@ public class SelectShortCutHandler implements ListSelectionListener {
 
         if ( !e.getValueIsAdjusting() && !jList.isSelectionEmpty()) {
             ShortCut shortCut= (ShortCut) jList.getSelectedValue();
-            try {
-                ExeUtils.run(shortCut);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            ExecUtils.run(shortCut);
         }
     }
 }

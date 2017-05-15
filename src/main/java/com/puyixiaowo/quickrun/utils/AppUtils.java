@@ -50,7 +50,7 @@ public class AppUtils {
 	}
 
 	private static File getRunningAppFile() {
-		return new File(ExeUtils.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+		return new File(ExecUtils.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class AppUtils {
 				START_UP_REG_LOCATION + " /v " + getAppName() +
 				(isStartUp ? " /t reg_sz /d " + getRunningAppFullPath() : " /f");
 		try {
-			ExeUtils.run(command);
+			ExecUtils.run(command);
 		} catch (IOException e) {
 
 		}

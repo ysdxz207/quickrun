@@ -3,8 +3,8 @@ package com.puyixiaowo.quickrun.handler.menu.right;
 import com.puyixiaowo.quickrun.dialog.EditShortCutDialog;
 import com.puyixiaowo.quickrun.entity.Config;
 import com.puyixiaowo.quickrun.entity.ShortCut;
+import com.puyixiaowo.quickrun.utils.Message;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,10 +17,10 @@ public class EditSaveShortCutHandler implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		String name = EditShortCutDialog.self.getTextFieldName().getText();
-		String link = EditShortCutDialog.self.getTextFieldLink().getText();
-		String cmdArgs = EditShortCutDialog.self.getTextFieldCmdArgs().getText();
-		String textIcon = EditShortCutDialog.self.getTextFieldTextIcon().getText();
+		String name = EditShortCutDialog.getInstance().getTextFieldName().getText();
+		String link = EditShortCutDialog.getInstance().getTextFieldLink().getText();
+		String cmdArgs = EditShortCutDialog.getInstance().getTextFieldCmdArgs().getText();
+		String textIcon = EditShortCutDialog.getInstance().getTextFieldTextIcon().getText();
 
 		ShortCut shortCut = new ShortCut();
 
@@ -34,9 +34,7 @@ public class EditSaveShortCutHandler implements ActionListener{
 			Config.updateShorCut(shortCut);
 			EditShortCutDialog.hideDialog();
 		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(EditShortCutDialog.self,
-					e1.getMessage(),
-					"添加快捷方式错误", JOptionPane.ERROR_MESSAGE);
+			Message.error(null, e1.getMessage());
 		}
 
 	}

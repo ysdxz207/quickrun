@@ -5,12 +5,11 @@ package com.puyixiaowo.quickrun.handler;/**
 import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.entity.Config;
 import com.puyixiaowo.quickrun.entity.ShortCut;
-import com.puyixiaowo.quickrun.utils.ExeUtils;
+import com.puyixiaowo.quickrun.utils.ExecUtils;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 /**
  * @author feihong
@@ -27,11 +26,7 @@ public class KeyHandler extends KeyAdapter {
             //打开程序
             if (shortCut != null) {
                 MainDialog.hideDialog();
-                try {
-                    ExeUtils.run(shortCut);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+                ExecUtils.run(shortCut);
 
             }
         }

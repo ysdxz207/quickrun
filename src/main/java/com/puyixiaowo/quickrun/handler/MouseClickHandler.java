@@ -5,7 +5,7 @@ package com.puyixiaowo.quickrun.handler;/**
 import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.entity.ShortCut;
 import com.puyixiaowo.quickrun.renderer.CellRenderer;
-import com.puyixiaowo.quickrun.utils.ExeUtils;
+import com.puyixiaowo.quickrun.utils.ExecUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,6 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import java.io.IOException;
 
 /**
  * @author feihong
@@ -36,12 +35,7 @@ public class MouseClickHandler extends MouseAdapter {
             ShortCut shortCut = (ShortCut) jList.getSelectedValue();
             if (shortCut != null) {
                 MainDialog.hideDialog();
-                try {
-                    ExeUtils.run(shortCut);
-                } catch (IOException e1) {
-                    JOptionPane.showMessageDialog(null, "打开程序异常：" + e1.getMessage(), "错误",JOptionPane.ERROR_MESSAGE);
-                }
-
+                ExecUtils.run(shortCut);
             }
         }
 
