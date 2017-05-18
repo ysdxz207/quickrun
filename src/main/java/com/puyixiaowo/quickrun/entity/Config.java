@@ -139,8 +139,7 @@ public class Config {
 	 * @return
 	 */
 	private String getRootConfigPath() {
-
-		return System.getProperty("user.dir") + "/";
+		return AppUtils.getRunningAppPath() + "/";
 	}
 
 	/**

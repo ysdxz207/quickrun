@@ -4,6 +4,7 @@ import com.puyixiaowo.quickrun.dialog.MainDialog;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.BindException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -69,7 +70,25 @@ public class AppUtils {
 	 * @return
 	 */
 	public static String getRunningAppFullPath(){
-		return "\"" + getRunningAppFile().getAbsolutePath().replaceAll("%20", " ") + "\"";
+		try {
+			return java.net.URLDecoder.decode(getRunningAppFile().getAbsolutePath(), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * get running jar file name if dev env returns app name
+	 * @return
+	 */
+	public static String getRunningAppPath(){
+		try {
+			return java.net.URLDecoder.decode(getRunningAppFile().getParent(), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 
@@ -81,7 +100,7 @@ public class AppUtils {
 	public static void startUp(boolean isStartUp) {
 		String command = "reg " + (isStartUp ? "add " : "delete ") +
 				START_UP_REG_LOCATION + " /v " + getAppName() +
-				(isStartUp ? " /t reg_sz /d " + getRunningAppFullPath() : " /f");
+				(isStartUp ? " /t reg_sz /d \"" + getRunningAppFullPath() : "\" /f");
 		try {
 			ExecUtils.run(command);
 		} catch (IOException e) {
