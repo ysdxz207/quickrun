@@ -32,9 +32,12 @@ public class RegeditUtils {
 
 			for (int i = 0; i < parsed.length; i++) {
 				String str = parsed[i].trim();
-				if (str.equals(location) ||
+				if (str.indexOf(location) != -1 ||
 						str.equals(key) ||
-						str.equals("REG_SZ")) {
+						str.toUpperCase().indexOf("REG_SZ") != -1 ||
+						str.toUpperCase().indexOf("REG.EXE") != -1 ||
+						str.toUpperCase().indexOf("VERSION") != -1 ||
+						str.equals("!")) {
 					parsed[i] = "";
 				}
 			}

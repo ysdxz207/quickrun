@@ -1,5 +1,7 @@
 package com.puyixiaowo.quickrun.utils;
 
+import com.puyixiaowo.quickrun.dialog.MainDialog;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.BindException;
@@ -83,7 +85,7 @@ public class AppUtils {
 		try {
 			ExecUtils.run(command);
 		} catch (IOException e) {
-
+			Message.error(MainDialog.getInstance(), e.getMessage());
 		}
 	}
 
