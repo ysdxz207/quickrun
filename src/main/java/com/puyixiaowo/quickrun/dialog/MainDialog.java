@@ -45,7 +45,7 @@ public class MainDialog extends JFrame {
 	public static Point pointHeader = new Point();
 
 
-	public static MainDialog getInstance(){
+	public static MainDialog getInstance() {
 		return MainDialogEnum.INSTANCE.singleton;
 	}
 
@@ -71,12 +71,14 @@ public class MainDialog extends JFrame {
 		AWTUtilities.setWindowOpaque(this, false);
 		getRootPane().setWindowDecorationStyle(JRootPane.NONE);
 		//getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);//去掉最小化按钮
-		com.sun.awt.AWTUtilities.setWindowOpacity(this, 0.92f);
+		if (com.sun.awt.AWTUtilities.isTranslucencySupported(AWTUtilities.Translucency.TRANSLUCENT)) {
+			com.sun.awt.AWTUtilities.setWindowOpacity(this, 0.92f);
+		}
 
 
 		//显示桌面则最小化到托盘
 		addWindowListener(new WindowAdapter() {
-			public void windowIconified(WindowEvent e){
+			public void windowIconified(WindowEvent e) {
 				dispose();//窗口最小化时dispose该窗口
 			}
 		});
@@ -108,7 +110,9 @@ public class MainDialog extends JFrame {
 		panel.setBackground(ColorUtil.string2Color(Colors.BG_MAIN.color));
 		panel.setLocation(0, HEIGHT_HEAD);
 
-		initHotKey();//初始化快捷键
+		if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
+			initHotKey();//初始化快捷键
+		}
 
 		initData(panel);
 
@@ -178,12 +182,13 @@ public class MainDialog extends JFrame {
 	public static void showDialog() {
 		getInstance().setVisible(true);
 	}
+
 	public static void hideDialog() {
 		getInstance().setVisible(false);
 	}
 
 
-	public void showOrHide(){
+	public void showOrHide() {
 		if (isShowing()) {
 			setVisible(false);
 		} else {
@@ -195,7 +200,7 @@ public class MainDialog extends JFrame {
 	/**
 	 * 刷新列表并选中
 	 */
-	public static void refreshJList(int index){
+	public static void refreshJList(int index) {
 		panel.setViewportView(Config.getConfigJList());
 		JList jList = (JList) panel.getViewport().getComponent(0);
 		jList.requestFocus();//设置jlist焦点，否则刷新后无法使用键盘
