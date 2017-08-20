@@ -61,7 +61,8 @@ public class ShortCutUtils {
 			} else {
 				shortCut.setStatus(ShortCutStatus.USEABLE.status);
 			}
-			shortCut.setLink(path);
+			shortCut.setLink(file.getAbsolutePath());
+			shortCut.setTarget(path);
 			shortCut.setCmdArgs(cmdArgs == null ? cmdArgs : cmdArgs.trim());
 			resultList.addElement(shortCut);
 			index++;

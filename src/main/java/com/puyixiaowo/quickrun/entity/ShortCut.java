@@ -9,6 +9,7 @@ package com.puyixiaowo.quickrun.entity;
 public class ShortCut {
 	private String name;
 	private String link;
+	private String target;
 	private String cmdArgs;//命令行参数
 	private String textIcon;//自定义图标文件路径
 	private int index = -1;
@@ -36,6 +37,14 @@ public class ShortCut {
 
 	public void setLink(String link) {
 		this.link = link;
+	}
+
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
 	}
 
 	public String getCmdArgs() {

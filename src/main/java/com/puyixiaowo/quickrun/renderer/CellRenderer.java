@@ -38,7 +38,7 @@ public class CellRenderer extends JLabel implements ListCellRenderer, Serializab
 			}
 			setIcon(textIcon);
 		} else {
-			Icon icon = IconUtils.getIcon(new File(shortCut.getLink()), Constants.ICON_SIZE);
+			Icon icon = IconUtils.getIcon(new File(shortCut.getTarget()), Constants.ICON_SIZE);
 			setIcon(icon);
 		}
 		setText(value.toString());

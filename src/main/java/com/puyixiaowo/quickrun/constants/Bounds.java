@@ -11,8 +11,8 @@ public class Bounds {
 	public static final Rectangle edit_shorcut_label_name = new Rectangle(12, 12, 64, 30);
 	public static final Rectangle edit_shorcut_filed_name = new Rectangle(80, 12, 274, 30);
 
-	public static final Rectangle edit_shorcut_label_link = new Rectangle(12, 50, 64, 30);
-	public static final Rectangle edit_shorcut_filed_link = new Rectangle(80, 50, 274, 30);
+	public static final Rectangle edit_shorcut_label_target = new Rectangle(12, 50, 64, 30);
+	public static final Rectangle edit_shorcut_filed_target = new Rectangle(80, 50, 274, 30);
 
 	public static final Rectangle edit_shorcut_label_cmd_args = new Rectangle(12, 88, 64, 30);
 	public static final Rectangle edit_shorcut_filed_cmd_args = new Rectangle(80, 88, 274, 30);

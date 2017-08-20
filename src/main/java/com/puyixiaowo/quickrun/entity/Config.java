@@ -104,9 +104,9 @@ public class Config {
 			JSONObject obj = config.getJSONObject(i);
 			ShortCut shortCut = obj.toJavaObject(ShortCut.class);
 			//刷新快捷方式状态
-			if (StringUtils.isBlank(shortCut.getLink())) {
+			if (StringUtils.isBlank(shortCut.getTarget())) {
 				shortCut.setStatus(ShortCutStatus.EMPTY_PATH.status);
-			} else if (!new File(shortCut.getLink()).exists()) {
+			} else if (!new File(shortCut.getTarget()).exists()) {
 				shortCut.setStatus(ShortCutStatus.NOT_EXISTS.status);
 			} else {
 				shortCut.setStatus(ShortCutStatus.USEABLE.status);
@@ -334,6 +334,7 @@ public class Config {
 		JSONObject obj = config.getJSONObject(shortCut.getIndex());
 		obj.put("name", shortCut.getName());
 		obj.put("link", shortCut.getLink());
+		obj.put("target", shortCut.getTarget());
 		obj.put("cmdArgs", shortCut.getCmdArgs());
 		obj.put("textIcon", shortCut.getTextIcon());
 
