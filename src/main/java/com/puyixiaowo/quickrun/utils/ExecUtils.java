@@ -23,7 +23,7 @@ public class ExecUtils {
         return startProgram(shortCut.getLink());
     }
 
-    private static boolean runCmd(String command) throws IOException {
+    public static boolean runCmd(String command) throws IOException {
         Runtime rt = Runtime.getRuntime();
         Process p = rt.exec(command);
         return p != null;

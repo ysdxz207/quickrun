@@ -102,7 +102,7 @@ public class AppUtils {
 				START_UP_REG_LOCATION + " /v " + getAppName() +
 				(isStartUp ? " /t reg_sz /d \"" + getRunningAppFullPath() : "\" /f");
 		try {
-			ExecUtils.run(command);
+			ExecUtils.runCmd(command);
 		} catch (IOException e) {
 			Message.error(MainDialog.getInstance(), e.getMessage());
 		}
