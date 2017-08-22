@@ -18,6 +18,7 @@ public class EditSaveShortCutHandler implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		String name = EditShortCutDialog.getInstance().getTextFieldName().getText();
+		String link = EditShortCutDialog.getInstance().getTextFieldLink().getText();
 		String target = EditShortCutDialog.getInstance().getTextFieldTarget().getText();
 		String cmdArgs = EditShortCutDialog.getInstance().getTextFieldCmdArgs().getText();
 		String textIcon = EditShortCutDialog.getInstance().getTextFieldTextIcon().getText();
@@ -26,6 +27,7 @@ public class EditSaveShortCutHandler implements ActionListener{
 
 		shortCut.setIndex(EditShortCutDialog.shortCut.getIndex());
 		shortCut.setName(name);
+		shortCut.setLink(link);
 		shortCut.setTarget(target);
 		shortCut.setCmdArgs(cmdArgs);
 		shortCut.setTextIcon(textIcon);

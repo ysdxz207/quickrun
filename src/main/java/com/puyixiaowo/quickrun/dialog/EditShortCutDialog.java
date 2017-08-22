@@ -17,19 +17,21 @@ import java.awt.event.KeyEvent;
  */
 public class EditShortCutDialog extends JDialog {
     private static final int width = 420;
-    private static final int height = 290;
+    private static final int height = 322;
     public static ShortCut shortCut;
     private static JPanel panel = new JPanel();
 
 
     ///////
     private static final JLabel lebelName = new JLabel("显示名：");
+    private static final JLabel lebelLink= new JLabel("快捷方式：");
     private static final JLabel lebelTarget = new JLabel("目标：");
     private static final JLabel lebelCmdArgs = new JLabel("参数：");
     private static final JLabel lebelTextIcon = new JLabel("图标路径：");
     private static final JButton buttonGetIcon = new JButton("+");
 
     private static JTextField textFieldName = new JTextField();
+    private static JTextField textFieldLink = new JTextField();
     private static JTextField textFieldTarget = new JTextField();
     private static JTextField textFieldCmdArgs = new JTextField();
     private static JTextField textFieldTextIcon = new JTextField();
@@ -91,6 +93,14 @@ public class EditShortCutDialog extends JDialog {
         panel.add(textFieldName);
 
 
+        lebelLink.setBounds(Bounds.edit_shorcut_label_link);
+        panel.add(lebelLink);
+
+
+        textFieldLink.setBounds(Bounds.edit_shorcut_filed_link);
+        panel.add(textFieldLink);
+
+
         lebelTarget.setBounds(Bounds.edit_shorcut_label_target);
         panel.add(lebelTarget);
 
@@ -139,6 +149,7 @@ public class EditShortCutDialog extends JDialog {
         EditShortCutDialog.shortCut = shortCut;
 
         textFieldName.setText(shortCut.getName());
+        textFieldLink.setText(shortCut.getLink());
         textFieldTarget.setText(shortCut.getTarget());
         textFieldCmdArgs.setText(shortCut.getCmdArgs());
         textFieldTextIcon.setText(shortCut.getTextIcon());
@@ -155,6 +166,10 @@ public class EditShortCutDialog extends JDialog {
         return textFieldName;
     }
 
+
+    public static JTextField getTextFieldLink() {
+        return textFieldLink;
+    }
 
     public static JTextField getTextFieldTarget() {
         return textFieldTarget;

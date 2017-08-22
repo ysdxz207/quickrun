@@ -16,7 +16,9 @@ public class ExecUtils {
 
         if (StringUtils.isBlank(shortCut.getLink()) ||
                 !new File(shortCut.getLink()).exists()) {
-            Message.error(MainDialog.getInstance(), "运行“" + shortCut.getName() + "”失败，请确保目标路径可用。");
+            Message.error(MainDialog.getInstance(),
+                    "运行“" + shortCut.getName()
+                            + "”失败，请确保快捷方式可用。");
             return false;
         }
 
@@ -43,6 +45,7 @@ public class ExecUtils {
                 desktop.open(new File(programPath));
                 return true;
             } catch (Exception e) {
+                Message.alert(null, e.getMessage());
                 return false;
             }
         } else {
