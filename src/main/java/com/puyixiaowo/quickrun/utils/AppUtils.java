@@ -1,9 +1,12 @@
 package com.puyixiaowo.quickrun.utils;
 
 import com.puyixiaowo.quickrun.dialog.MainDialog;
+import com.puyixiaowo.quickrun.entity.Config;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.BindException;
 import java.net.InetAddress;
@@ -98,6 +101,11 @@ public class AppUtils {
 	 * 			是否开机启动
 	 */
 	public static void startUp(boolean isStartUp) {
+		String winName = System.getProperty("os.name");
+		if ("Windows 10".equals(winName)) {
+			startUpWin10();
+			return;
+		}
 		String command = "reg " + (isStartUp ? "add " : "delete ") +
 				START_UP_REG_LOCATION + " /v " + getAppName() +
 				(isStartUp ? " /t reg_sz /d \"" + getRunningAppFullPath() : "\" /f");
@@ -106,6 +114,21 @@ public class AppUtils {
 		} catch (IOException e) {
 			Message.error(MainDialog.getInstance(), e.getMessage());
 		}
+	}
+
+	private static void startUpWin10(){
+		String startupBat = "/startup.bat";
+		String userDir = Config.getInstance().getRootconfigPath();
+		String runFilePath = userDir + startupBat;
+		File startup = new File(runFilePath);
+		InputStream in = ResourceUtil.getInpuStream(startupBat);
+		try {
+			FileUtils.copyToFile(in, startup);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		ExecUtils.run(runFilePath);
 	}
 
 	public static boolean isStartUp() {
@@ -131,6 +154,6 @@ public class AppUtils {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getRunningAppFullPath());
+		startUp(true);
 	}
 }

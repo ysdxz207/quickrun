@@ -11,13 +11,18 @@ import java.io.InputStream;
  * @date 2016年12月25日 下午10:02:10
  */
 public class ResourceUtil {
+
+	public static InputStream getInpuStream(String fileName) {
+		return ResourceUtil.class.getResourceAsStream(fileName);
+	}
+
 	/**
 	 * 通过文件名获取图片图标资源
 	 * @param fileName
 	 * @return
 	 */
 	public static ImageIcon getImageIcon(String fileName){
-		InputStream input = ResourceUtil.class.getResourceAsStream("/icon/" + fileName);
+		InputStream input = getInpuStream("/icon/" + fileName);
 		try {
 			ImageIcon icon = new ImageIcon();
 			Image image =ImageIO.read(input);

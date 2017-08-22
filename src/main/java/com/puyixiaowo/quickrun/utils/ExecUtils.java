@@ -25,6 +25,17 @@ public class ExecUtils {
         return startProgram(shortCut.getLink());
     }
 
+    public static boolean run(String path) {
+        if (StringUtils.isBlank(path)) {
+            Message.error(MainDialog.getInstance(),
+                    "运行“" + path
+                            + "”失败，请确保快捷方式可用。");
+            return false;
+        }
+
+        return startProgram(path);
+    }
+
     public static boolean runCmd(String command) throws IOException {
         Runtime rt = Runtime.getRuntime();
         Process p = rt.exec(command);
