@@ -45,7 +45,6 @@ public class ExecUtils {
                 desktop.open(new File(programPath));
                 return true;
             } catch (Exception e) {
-                Message.alert(null, e.getMessage());
                 return false;
             }
         } else {
