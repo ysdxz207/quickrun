@@ -101,11 +101,13 @@ public class AppUtils {
 	 * 			是否开机启动
 	 */
 	public static void startUp(boolean isStartUp) {
-		String winName = System.getProperty("os.name");
-		if ("Windows 10".equals(winName)) {
-			startUpWin10();
-			return;
-		}
+//		String winName = System.getProperty("os.name");
+//		if ("Windows 10".equals(winName)) {
+//			return;
+//		}
+
+		startUpWin10();
+/*
 		String command = "reg " + (isStartUp ? "add " : "delete ") +
 				START_UP_REG_LOCATION + " /v " + getAppName() +
 				(isStartUp ? " /t reg_sz /d \"" + getRunningAppFullPath() : "\" /f");
@@ -113,7 +115,7 @@ public class AppUtils {
 			ExecUtils.runCmd(command);
 		} catch (IOException e) {
 			Message.error(MainDialog.getInstance(), e.getMessage());
-		}
+		}*/
 	}
 
 	private static void startUpWin10(){
