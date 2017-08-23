@@ -19,7 +19,7 @@ public class ExecUtils {
             Message.error(MainDialog.getInstance(),
                     "运行“" + shortCut.getName()
                             + "”失败，请确保快捷方式可用。");
-            return false;
+            return startProgram(shortCut.getTarget());
         }
 
         return startProgram(shortCut.getLink());
