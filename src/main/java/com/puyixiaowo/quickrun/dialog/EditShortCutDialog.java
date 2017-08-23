@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 /**
  * @author huangfeihong
@@ -150,7 +151,13 @@ public class EditShortCutDialog extends JDialog {
 
         textFieldName.setText(shortCut.getName());
         textFieldLink.setText(shortCut.getLink());
+        if (!new File(shortCut.getLink()).exists()) {
+            textFieldLink.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+        }
         textFieldTarget.setText(shortCut.getTarget());
+        if (!new File(shortCut.getTarget()).exists()) {
+            textFieldTarget.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+        }
         textFieldCmdArgs.setText(shortCut.getCmdArgs());
         textFieldTextIcon.setText(shortCut.getTextIcon());
     }
