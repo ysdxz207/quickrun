@@ -16,20 +16,25 @@ public class ExecUtils {
 
         if (StringUtils.isBlank(shortCut.getLink()) ||
                 !new File(shortCut.getLink()).exists()) {
-            Message.error(MainDialog.getInstance(),
-                    "运行“" + shortCut.getName()
-                            + "”失败，请确保快捷方式可用。");
             return startProgram(shortCut.getTarget());
         }
 
-        return startProgram(shortCut.getLink());
+        boolean flag = startProgram(shortCut.getLink());
+        if (!flag) {
+            Message.error(MainDialog.getInstance(),
+                    "运行“" + shortCut.getName()
+                            + "”失败，请确保快捷方式可用。");
+            return false;
+        }
+
+        return true;
     }
 
     public static boolean run(String path) {
         if (StringUtils.isBlank(path)) {
             Message.error(MainDialog.getInstance(),
                     "运行“" + path
-                            + "”失败，请确保快捷方式可用。");
+                            + "”失败，请确保执行路径可用。");
             return false;
         }
 
