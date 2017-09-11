@@ -17,7 +17,7 @@ public class ExecUtils {
 
         //批处理文件
         if ("bat".equalsIgnoreCase(FileUtil.getFileExtName(shortCut.getLink()))) {
-            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", shortCut.getTarget());
+            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "start", shortCut.getTarget());
             File dir = new File(shortCut.getTarget()).getParentFile();
             pb.directory(dir);
             try {
