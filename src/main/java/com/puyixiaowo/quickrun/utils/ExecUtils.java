@@ -2,6 +2,7 @@ package com.puyixiaowo.quickrun.utils;
 
 import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.entity.ShortCut;
+import org.apache.commons.io.FileUtils;
 
 import java.awt.*;
 import java.io.File;
@@ -14,6 +15,19 @@ import java.io.IOException;
 public class ExecUtils {
     public static boolean run(ShortCut shortCut) {
 
+        //批处理文件
+        if ("bat".equalsIgnoreCase(FileUtil.getFileExtName(shortCut.getLink()))) {
+            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", shortCut.getTarget());
+            File dir = new File(shortCut.getTarget()).getParentFile();
+            pb.directory(dir);
+            try {
+                Process p = pb.start();
+                return true;
+            } catch (IOException e) {
+                return false;
+            }
+        }
+        //其他
         if (StringUtils.isBlank(shortCut.getLink()) ||
                 !new File(shortCut.getLink()).exists()) {
             return startProgram(shortCut.getTarget());
@@ -54,9 +68,10 @@ public class ExecUtils {
      * @return
      * @throws IOException
      */
-    public static boolean startProgram(String programPath) {
+    private static boolean startProgram(String programPath) {
         if (StringUtils.isNotBlank(programPath)) {
             try {
+
                 Desktop desktop = Desktop.getDesktop();
                 desktop.open(new File(programPath));
                 return true;

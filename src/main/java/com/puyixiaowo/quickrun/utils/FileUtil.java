@@ -1,5 +1,7 @@
 package com.puyixiaowo.quickrun.utils;
 
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -345,5 +347,9 @@ public class FileUtil {
 		return file == null ? "" :
 				file.getName().substring(0, file.getName().indexOf('.') == -1 ? file.getName().length() :
 						file.getName().indexOf("."));
+	}
+
+	public static String getFileExtName(String filepath){
+		return FilenameUtils.getExtension(filepath);
 	}
 }
