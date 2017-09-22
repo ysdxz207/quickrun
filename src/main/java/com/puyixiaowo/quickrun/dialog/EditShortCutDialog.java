@@ -147,6 +147,10 @@ public class EditShortCutDialog extends JDialog {
     }
 
     public static void fillData(ShortCut shortCut){
+        textFieldLink.setBorder(UIManager.getBorder("TextField.border"));
+        textFieldTarget.setBorder(UIManager.getBorder("TextField.border"));
+
+
         EditShortCutDialog.shortCut = shortCut;
 
         textFieldName.setText(shortCut.getName());
