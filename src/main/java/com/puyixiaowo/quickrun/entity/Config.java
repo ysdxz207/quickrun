@@ -76,14 +76,14 @@ public class Config {
 		JMenuItem jMenuItemEdit = new JMenuItem();
 		jMenuItemEdit.setText("编辑");
 		jMenuItemEdit.setComponentZOrder(list, 0);
-		jMenuItemEdit.setIcon(ResourceUtil.getImageIcon("edit.png"));
+		jMenuItemEdit.setIcon(IconUtils.getImageIcon("edit.png"));
 		jMenuItemEdit.addActionListener(new EditShortCutHandler());
 		rightClickMenu.add(jMenuItemEdit);
 
 		JMenuItem jMenuItemDelete = new JMenuItem();
 		jMenuItemDelete.setText("删除");
 		jMenuItemDelete.setComponentZOrder(list, 0);
-		jMenuItemDelete.setIcon(ResourceUtil.getImageIcon("delete.png"));
+		jMenuItemDelete.setIcon(IconUtils.getImageIcon("delete.png"));
 		jMenuItemDelete.addActionListener(new DeleteShortCutHandler());
 		rightClickMenu.add(jMenuItemDelete);
 		list.setComponentPopupMenu(rightClickMenu);
@@ -216,6 +216,7 @@ public class Config {
 					"快捷方式[" + shortCut.getName() + "]已存在");
 		} else {
 			// 创建新的配置
+			shortCut.setId(IdUtils.generateId()+"");
 			config.add(JSONObject.toJSON(shortCut));
 
 			//refreshConf(config);
@@ -325,13 +326,14 @@ public class Config {
 			throw new Exception("未选中快捷方式");
 		}
 		if (isShortCutConfExists(shortCut)
-				&& readShortCutConf(shortCut.getName()).getIndex() != shortCut.getIndex()) {
+				&& !readShortCutConf(shortCut.getName()).getId().equalsIgnoreCase(shortCut.getId())) {
 			//提示已存在
 			throw new Exception("快捷方式[" + shortCut.getName() + "]已存在");
 		}
 		JSONArray config = Constants.CONFIG;
 
 		JSONObject obj = config.getJSONObject(shortCut.getIndex());
+		obj.put("id", shortCut.getId());
 		obj.put("name", shortCut.getName());
 		obj.put("link", shortCut.getLink());
 		obj.put("target", shortCut.getTarget());

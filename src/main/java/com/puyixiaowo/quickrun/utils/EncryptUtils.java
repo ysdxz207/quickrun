@@ -1,5 +1,7 @@
 package com.puyixiaowo.quickrun.utils;
 
+import com.puyixiaowo.quickrun.constants.Constants;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -366,7 +368,7 @@ public class EncryptUtils {
      * 
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         EncryptUtils encryptUtils = new EncryptUtils();
         String source = "www.putiman.com";
         System.out.println("Hello经过MD5:" + encryptUtils.encryptToMD5(source));

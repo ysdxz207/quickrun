@@ -7,6 +7,8 @@ package com.puyixiaowo.quickrun.entity;
  * @date 2017-03-10
  */
 public class ShortCut {
+
+	private String id;
 	private String name;
 	private String link;
 	private String target;
@@ -21,6 +23,14 @@ public class ShortCut {
 	public ShortCut(String name, String link) {
 		this.name = name;
 		this.link = link;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getName() {

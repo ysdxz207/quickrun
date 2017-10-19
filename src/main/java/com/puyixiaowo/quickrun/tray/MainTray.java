@@ -2,6 +2,7 @@ package com.puyixiaowo.quickrun.tray;
 
 import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.utils.AppUtils;
+import com.puyixiaowo.quickrun.utils.IconUtils;
 import com.puyixiaowo.quickrun.utils.ResourceUtil;
 
 import javax.swing.*;
@@ -25,7 +26,7 @@ public class MainTray {
 	private void init() {
 
 		tray = SystemTray.getSystemTray(); // 获得本操作系统托盘的实例
-		ImageIcon icon = ResourceUtil.getImageIcon("icon.png"); // 将要显示到托盘中的图标
+		ImageIcon icon = IconUtils.getImageIcon("icon.png"); // 将要显示到托盘中的图标
 		PopupMenu pop = new PopupMenu(); // 构造一个右键弹出式菜单
 
 		final MenuItem show = new MenuItem("打开程序");

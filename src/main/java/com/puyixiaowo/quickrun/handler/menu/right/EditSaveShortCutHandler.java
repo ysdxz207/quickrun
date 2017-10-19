@@ -25,6 +25,7 @@ public class EditSaveShortCutHandler implements ActionListener{
 
 		ShortCut shortCut = new ShortCut();
 
+		shortCut.setId(EditShortCutDialog.shortCut.getId());
 		shortCut.setIndex(EditShortCutDialog.shortCut.getIndex());
 		shortCut.setName(name);
 		shortCut.setLink(link);

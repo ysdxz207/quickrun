@@ -27,12 +27,11 @@ public class CellRenderer extends JLabel implements ListCellRenderer, Serializab
 		ListModel model = list.getModel();
 		ShortCut shortCut = (ShortCut) model.getElementAt(index);
 
-		String textIconPath = Config.ICON_DIR + shortCut.getTextIcon();
 		if (StringUtils.isNotBlank(shortCut.getTextIcon()) &&
-				new File(textIconPath).exists()) {
+				IconUtils.getIconFile(shortCut.getTextIcon()).exists()) {
 			Icon textIcon = null;
 			try {
-				textIcon = new ImageIcon(ImageIO.read(new File(textIconPath)).getScaledInstance(Constants.ICON_SIZE, Constants.ICON_SIZE, Image.SCALE_SMOOTH));
+				textIcon = new ImageIcon(ImageIO.read(IconUtils.getIconFile(shortCut.getTextIcon())).getScaledInstance(Constants.ICON_SIZE, Constants.ICON_SIZE, Image.SCALE_SMOOTH));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

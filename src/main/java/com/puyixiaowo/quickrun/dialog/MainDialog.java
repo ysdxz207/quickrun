@@ -1,6 +1,7 @@
 package com.puyixiaowo.quickrun.dialog;
 
 import com.melloware.jintellitype.JIntellitype;
+import com.puyixiaowo.quickrun.constants.Constants;
 import com.puyixiaowo.quickrun.entity.Config;
 import com.puyixiaowo.quickrun.entity.ShortCut;
 import com.puyixiaowo.quickrun.enums.Colors;
@@ -8,6 +9,7 @@ import com.puyixiaowo.quickrun.handler.HeaderMouseClickHandler;
 import com.puyixiaowo.quickrun.handler.HeaderMouseDragHandler;
 import com.puyixiaowo.quickrun.tray.MainTray;
 import com.puyixiaowo.quickrun.utils.ColorUtil;
+import com.puyixiaowo.quickrun.utils.IconUtils;
 import com.puyixiaowo.quickrun.utils.ResourceUtil;
 import com.puyixiaowo.quickrun.utils.ShortCutUtils;
 import com.sun.awt.AWTUtilities;
@@ -91,7 +93,7 @@ public class MainDialog extends JFrame {
 
 	private void initUI() {
 		new MainTray(this);//托盘
-		setIconImage(ResourceUtil.getImageIcon("icon.png").getImage());
+		setIconImage(IconUtils.getImageIcon("icon.png").getImage());
 		initPanel();
 	}
 
