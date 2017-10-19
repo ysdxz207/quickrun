@@ -257,6 +257,14 @@ public class Config {
 	 * 保存配置到文件
 	 */
 	public static void saveConf() {
+		if (Constants.CONFIG.size() > 0) {
+			//重置索引
+			JSONArray jsonArray = Constants.CONFIG;
+			for (int i = 0; i < jsonArray.size(); i ++) {
+				jsonArray.getJSONObject(i).put("index", i);
+			}
+		}
+
 		String str = "";
 
 		try {
@@ -265,7 +273,6 @@ public class Config {
 			e.printStackTrace();
 		}
 		if (new File(configFilePath + Constants.CONFIG_FILE_NAME).exists()) {
-
 			FileUtil.saveFile(configFilePath + Constants.CONFIG_FILE_NAME, str);
 		} else {
 			FileUtil.writeFile(str, configFilePath, Constants.CONFIG_FILE_NAME, Constants.ENCODE);
