@@ -9,4 +9,5 @@ UI用的[beautyeye](https://github.com/JackJiang2011/beautyeye)
 
 对于jar支持参数，如下：
 将jar拖入主窗口后， 编辑参数，如图
+
 ![jar支持采纳数](https://github.com/ysdxz207/quickrun/raw/master/doc/images/jar_edit.png)
