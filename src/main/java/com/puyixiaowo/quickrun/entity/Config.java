@@ -9,8 +9,6 @@ import com.puyixiaowo.quickrun.enums.ShortCutStatus;
 import com.puyixiaowo.quickrun.handler.KeyHandler;
 import com.puyixiaowo.quickrun.handler.MouseClickHandler;
 import com.puyixiaowo.quickrun.handler.MouseMovedHandler;
-import com.puyixiaowo.quickrun.handler.menu.right.DeleteShortCutHandler;
-import com.puyixiaowo.quickrun.handler.menu.right.EditShortCutHandler;
 import com.puyixiaowo.quickrun.renderer.CellRenderer;
 import com.puyixiaowo.quickrun.utils.*;
 
@@ -61,7 +59,6 @@ public class Config {
 			}
 		};
 		list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		//list.addListSelectionListener(new SelectShortCutHandler());
 		list.addMouseWheelListener(new MouseClickHandler());
 		list.addKeyListener(new KeyHandler());
 		list.addMouseListener(new MouseClickHandler());
@@ -70,24 +67,6 @@ public class Config {
 		list.setFixedCellHeight(18);
 		list.setBackground(ColorUtil.string2Color(Colors.BG_MAIN.color));
 
-
-		//右键菜单start
-		JPopupMenu rightClickMenu = new JPopupMenu();
-		JMenuItem jMenuItemEdit = new JMenuItem();
-		jMenuItemEdit.setText("编辑");
-		jMenuItemEdit.setComponentZOrder(list, 0);
-		jMenuItemEdit.setIcon(IconUtils.getImageIcon("edit.png"));
-		jMenuItemEdit.addActionListener(new EditShortCutHandler());
-		rightClickMenu.add(jMenuItemEdit);
-
-		JMenuItem jMenuItemDelete = new JMenuItem();
-		jMenuItemDelete.setText("删除");
-		jMenuItemDelete.setComponentZOrder(list, 0);
-		jMenuItemDelete.setIcon(IconUtils.getImageIcon("delete.png"));
-		jMenuItemDelete.addActionListener(new DeleteShortCutHandler());
-		rightClickMenu.add(jMenuItemDelete);
-		list.setComponentPopupMenu(rightClickMenu);
-		//右键菜单end
 
 		return list;
 	}

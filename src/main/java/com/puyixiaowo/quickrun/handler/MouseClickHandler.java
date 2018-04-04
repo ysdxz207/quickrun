@@ -2,6 +2,7 @@ package com.puyixiaowo.quickrun.handler;/**
  * Created by ysdxz207 on 2017-03-10 0010.
  */
 
+import com.puyixiaowo.quickrun.dialog.EditShortCutDialog;
 import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.entity.ShortCut;
 import com.puyixiaowo.quickrun.renderer.CellRenderer;
@@ -46,9 +47,17 @@ public class MouseClickHandler extends MouseAdapter {
         }
 
         if (e.getButton() == MouseEvent.BUTTON3) {
-            //右键弹出菜单
+            //右键编辑
             jList.setSelectedIndex(index);
-            //jList.getComponentPopupMenu().show(jList,e.getX(),e.getY());
+            ShortCut shortCut = (ShortCut) jList.getSelectedValue();
+
+            if (shortCut != null) {
+                shortCut.setIndex(jList.getSelectedIndex());
+
+                //编辑快捷键对话框
+                EditShortCutDialog.showDialog(shortCut);
+            }
+
         }
 
         //hover样式

@@ -32,13 +32,12 @@ public class KeyHandler extends KeyAdapter {
         }
         if (e.getKeyCode() == KeyEvent.VK_DELETE) {
             //删除快捷方式
-//            if (selectList != null && selectList.size() > 0) {
-//
-//                for (ShortCut shortCut1:
-//                     selectList) {
-//                    Config.deleteConfig(shortCut1.getName());
-//                }
-//            }
+
+            int ok = JOptionPane.showConfirmDialog(MainDialog.getInstance(), "确定删除[" + shortCut.getName() + "]？", "提示", 0);
+
+            if (ok != JOptionPane.OK_OPTION) {
+                return;
+            }
             if (shortCut != null) {
 
                 int nextIndex = jList.getSelectedIndex();
