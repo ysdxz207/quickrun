@@ -2,6 +2,9 @@ package com.puyixiaowo.quickrun.main;
 
 import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.utils.AppUtils;
+import org.pushingpixels.substance.api.skin.*;
+
+import javax.swing.*;
 
 /**
  * @author huangfeihong
@@ -11,5 +14,11 @@ public class Main {
     public static void main(String[] args) {
         AppUtils.checkIfRunning();
         MainDialog.getInstance();
+        try {
+            UIManager.setLookAndFeel( new SubstanceChallengerDeepLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
     }
 }
