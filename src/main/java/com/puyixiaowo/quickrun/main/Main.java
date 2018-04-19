@@ -15,7 +15,7 @@ public class Main {
         AppUtils.checkIfRunning();
         MainDialog.getInstance();
         try {
-            UIManager.setLookAndFeel( new SubstanceChallengerDeepLookAndFeel());
+            UIManager.setLookAndFeel( new SubstanceGraphiteLookAndFeel());
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
