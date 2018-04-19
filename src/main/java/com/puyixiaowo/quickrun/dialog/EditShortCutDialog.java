@@ -129,6 +129,8 @@ public class EditShortCutDialog extends JDialog {
         buttonGetIcon.addActionListener(new ExtractIconCutHandler());
         buttonGetIcon.setBounds(Bounds.edit_shorcut_button_get_icon);
         buttonGetIcon.setForeground(ColorUtil.string2Color("#00bb17"));
+        buttonGetIcon.setMargin(new Insets(0, 0, 0, 0));
+        buttonGetIcon.setBorder(null);
         buttonGetIcon.setFont(new Font("宋体", 1, 18));
         buttonGetIcon.setToolTipText("选择图片或从其他程序中提取图标");
         panel.add(buttonGetIcon);
