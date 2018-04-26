@@ -2,10 +2,13 @@ package com.puyixiaowo.quickrun.handler;/**
  * Created by ysdxz207 on 2017-03-11 0011.
  */
 
+import com.alibaba.fastjson.JSON;
+import com.puyixiaowo.quickrun.dialog.EditShortCutDialog;
 import com.puyixiaowo.quickrun.dialog.MainDialog;
 import com.puyixiaowo.quickrun.entity.Config;
 import com.puyixiaowo.quickrun.entity.ShortCut;
 import com.puyixiaowo.quickrun.utils.ExecUtils;
+import com.puyixiaowo.quickrun.utils.IdUtils;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -50,6 +53,22 @@ public class KeyHandler extends KeyAdapter {
             //移除选中
             jList.clearSelection();
             jList.setSelectedIndex(-1);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_ADD
+                || e.getKeyCode() == KeyEvent.VK_EQUALS) {
+
+
+            shortCut = new ShortCut();
+            shortCut.setStatus(1);
+            shortCut.setLink("");
+            shortCut.setTextIcon("");
+            shortCut.setCmdArgs("");
+            shortCut.setName("");
+            shortCut.setTarget("");
+            shortCut.setIndex(jList.getModel().getSize());
+
+            //编辑快捷键对话框
+            EditShortCutDialog.showDialog(shortCut);
         }
     }
 }

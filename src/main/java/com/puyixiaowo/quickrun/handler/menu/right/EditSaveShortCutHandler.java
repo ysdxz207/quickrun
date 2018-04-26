@@ -3,6 +3,7 @@ package com.puyixiaowo.quickrun.handler.menu.right;
 import com.puyixiaowo.quickrun.dialog.EditShortCutDialog;
 import com.puyixiaowo.quickrun.entity.Config;
 import com.puyixiaowo.quickrun.entity.ShortCut;
+import com.puyixiaowo.quickrun.utils.IdUtils;
 import com.puyixiaowo.quickrun.utils.Message;
 
 import java.awt.event.ActionEvent;
@@ -34,7 +35,13 @@ public class EditSaveShortCutHandler implements ActionListener{
 		shortCut.setTextIcon(textIcon);
 
 		try {
-			Config.updateShorCut(shortCut);
+			if (shortCut.getId() == null) {
+				//新增
+				shortCut.setId(IdUtils.generateId() + "");
+				Config.addShortCutConf(shortCut);
+			} else {
+				Config.updateShorCut(shortCut);
+			}
 			EditShortCutDialog.hideDialog();
 		} catch (Exception e1) {
 			Message.error(null, e1.getMessage());
