@@ -18,58 +18,36 @@ public class ExecUtils {
     public static boolean run(ShortCut shortCut) {
 
         String ext = FileUtil.getFileExtName(shortCut.getLink());
-        //批处理文件
-        if ("bat".equalsIgnoreCase(ext)) {
-            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "call", shortCut.getTarget());
-            File dir = new File(shortCut.getTarget()).getParentFile();
-            pb.directory(dir);
-            try {
-                Process p = pb.start();
-                return true;
-            } catch (IOException e) {
-                return false;
-            }
-        }
 
+
+
+
+        List<String> argList = new ArrayList<>();
+        argList.add("cmd");
+        argList.add("/c");
         if ("jar".equalsIgnoreCase(ext)) {
-            List<String> argList = new ArrayList<>();
-            argList.add("cmd");
-            argList.add("/c");
+
             argList.add("java");
             argList.add("-jar");
-            argList.add(shortCut.getTarget());
+        }
+        argList.add(shortCut.getTarget());
 
-            if (StringUtils.isNotBlank(shortCut.getCmdArgs())) {
-                argList.addAll(Arrays.asList(shortCut.getCmdArgs().split(" ")));
-            }
-
-
-            ProcessBuilder pb = new ProcessBuilder(argList.toArray(new String[argList.size()]));
-            File dir = new File(shortCut.getTarget()).getParentFile();
-            pb.directory(dir);
-            try {
-                Process p = pb.start();
-                return true;
-            } catch (IOException e) {
-                return false;
-            }
+        if (StringUtils.isNotBlank(shortCut.getCmdArgs())) {
+            argList.addAll(Arrays.asList(shortCut.getCmdArgs().split(" ")));
         }
 
-        //其他
-        if (StringUtils.isBlank(shortCut.getLink()) ||
-                !new File(shortCut.getLink()).exists()) {
-            return startProgram(shortCut.getTarget());
-        }
 
-        boolean flag = startProgram(shortCut.getLink());
-        if (!flag) {
-            Message.error(MainDialog.getInstance(),
-                    "运行“" + shortCut.getName()
-                            + "”失败，请确保快捷方式可用。");
+        ProcessBuilder pb = new ProcessBuilder(argList.toArray(new String[argList.size()]));
+        File dir = new File(shortCut.getTarget()).getParentFile();
+        pb.directory(dir);
+        try {
+            Process p = pb.start();
+            return true;
+        } catch (IOException e) {
             return false;
         }
 
-        return true;
+
     }
 
     public static boolean run(String path) {
