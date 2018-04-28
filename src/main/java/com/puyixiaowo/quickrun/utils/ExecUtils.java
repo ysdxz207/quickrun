@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -58,23 +59,40 @@ public class ExecUtils {
             return flag;
         }
 
-        List<String> argList = new ArrayList<>();
-        argList.add("cmd");
-        argList.add("/c");
+        List<String> listArgs = new ArrayList<>(Arrays.asList(shortCut.getCmdArgs().split(" ")));
+        boolean showConsole = false;
+
+        Iterator<String> it = listArgs.iterator();
+
+        while (it.hasNext()) {
+            String arg = it.next();
+            if (arg.equalsIgnoreCase("-quickrun--console")) {
+                showConsole = true;
+                it.remove();
+            }
+        }
+
+        List<String> listArgsExec = new ArrayList<>();
+
+        listArgsExec.add("cmd");
+        listArgsExec.add("/c");
+        if (showConsole) {
+            listArgsExec.add("start");
+            listArgsExec.add("cmd.exe");
+            listArgsExec.add("/k");
+        }
+
         if ("jar".equalsIgnoreCase(ext)) {
 
-            argList.add("java");
-            argList.add("-jar");
+            listArgsExec.add("java");
+            listArgsExec.add("-jar");
         }
+
         //命令使用target
-        argList.add(shortCut.getTarget());
+        listArgsExec.add(shortCut.getTarget());
+        listArgsExec.addAll(listArgs);
 
-        if (StringUtils.isNotBlank(shortCut.getCmdArgs())) {
-            argList.addAll(Arrays.asList(shortCut.getCmdArgs().split(" ")));
-        }
-
-
-        ProcessBuilder pb = new ProcessBuilder(argList.toArray(new String[argList.size()]));
+        ProcessBuilder pb = new ProcessBuilder(listArgsExec.toArray(new String[listArgsExec.size()]));
         File dir = new File(shortCut.getTarget()).getParentFile();
         pb.directory(dir);
         try {
