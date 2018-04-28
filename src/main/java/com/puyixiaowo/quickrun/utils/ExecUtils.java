@@ -16,11 +16,45 @@ import java.util.List;
  */
 public class ExecUtils {
     public static boolean run(ShortCut shortCut) {
+        boolean linkUsable = true;
+        boolean targetUsable = true;
+
+
+
+        //link和target哪个可用
+        if (StringUtils.isBlank(shortCut.getLink())
+                || !new File(shortCut.getLink()).exists()) {
+            linkUsable = false;
+        }
+
+        if (StringUtils.isBlank(shortCut.getTarget())
+                || !new File(shortCut.getTarget()).exists()) {
+            targetUsable = false;
+        }
+
+        if (!linkUsable
+                && !targetUsable) {
+            Message.error(MainDialog.getInstance(),
+                    "运行“" + shortCut.getName()
+                            + "”失败，请确保快捷方式可用。");
+            return false;
+        }
 
         String ext = FileUtil.getFileExtName(shortCut.getLink());
 
 
+        if (StringUtils.isBlank(ext)) {
+            //文件夹
 
+            boolean flag = startProgram(linkUsable ? shortCut.getLink() : shortCut.getTarget());
+            if (!flag) {
+                Message.error(MainDialog.getInstance(),
+                        "运行“" + shortCut.getName()
+                                + "”失败，请确保快捷方式可执行。");
+                return false;
+            }
+            return flag;
+        }
 
         List<String> argList = new ArrayList<>();
         argList.add("cmd");
@@ -30,6 +64,7 @@ public class ExecUtils {
             argList.add("java");
             argList.add("-jar");
         }
+        //命令使用target
         argList.add(shortCut.getTarget());
 
         if (StringUtils.isNotBlank(shortCut.getCmdArgs())) {
