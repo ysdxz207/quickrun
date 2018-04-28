@@ -40,13 +40,15 @@ public class ExecUtils {
             return false;
         }
 
-        String ext = FileUtil.getFileExtName(shortCut.getLink());
+        String execPath = linkUsable ? shortCut.getLink() : shortCut.getTarget();
+
+        String ext = FileUtil.getFileExtName(execPath);
 
 
         if (StringUtils.isBlank(ext)) {
             //文件夹
 
-            boolean flag = startProgram(linkUsable ? shortCut.getLink() : shortCut.getTarget());
+            boolean flag = startProgram(execPath);
             if (!flag) {
                 Message.error(MainDialog.getInstance(),
                         "运行“" + shortCut.getName()
