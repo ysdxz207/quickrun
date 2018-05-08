@@ -59,6 +59,19 @@ public class ExecUtils {
             return flag;
         }
 
+        //批处理文件
+        if ("bat".equalsIgnoreCase(ext)) {
+            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "start", shortCut.getTarget());
+            File dir = new File(shortCut.getTarget()).getParentFile();
+            pb.directory(dir);
+            try {
+                Process p = pb.start();
+                return true;
+            } catch (IOException e) {
+                return false;
+            }
+        }
+
         //jar
         if ("jar".equalsIgnoreCase(ext)) {
 
