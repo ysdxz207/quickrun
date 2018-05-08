@@ -131,6 +131,8 @@ public class AppUtils {
 		}
 
 		ExecUtils.run(runFilePath);
+		//运行后删除
+		startup.delete();
 	}
 
 	public static boolean isStartUp() {
