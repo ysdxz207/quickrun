@@ -25,6 +25,8 @@ public class AppUtils {
 	private static final String APP_CONF_FILE = "app.properties";
 	private static final String APP_NAME_KEY = "app.name";
 	private static final String APP_VERSION_KEY = "app.version";
+	private static final String PATH_START_UP_BAT = "/startup.bat";
+	private static final String PATH_START_UP_BAT_TEMP = System.getProperty("java.io.tmpdir") + "/quickrun/startup.bat";
 
 	private static final String START_UP_REG_LOCATION = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
 
@@ -119,20 +121,17 @@ public class AppUtils {
 	}
 
 	private static void startUpWin10(){
-		String startupBat = "/startup.bat";
-		String userDir = Config.getInstance().getRootconfigPath();
-		String runFilePath = userDir + startupBat;
-		File startup = new File(runFilePath);
-		InputStream in = ResourceUtil.getInpuStream(startupBat);
+		File startup = new File(PATH_START_UP_BAT_TEMP);
+		InputStream in = ResourceUtil.getInpuStream(PATH_START_UP_BAT);
 		try {
 			FileUtils.copyToFile(in, startup);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		ExecUtils.run(runFilePath);
+		ExecUtils.run(PATH_START_UP_BAT_TEMP);
 		//运行后删除
-		startup.delete();
+//		startup.delete();
 	}
 
 	public static boolean isStartUp() {
