@@ -26,7 +26,7 @@ public class AppUtils {
 	private static final String APP_NAME_KEY = "app.name";
 	private static final String APP_VERSION_KEY = "app.version";
 	private static final String PATH_START_UP_BAT = "/startup.bat";
-	private static final String PATH_START_UP_BAT_TEMP = System.getProperty("java.io.tmpdir") + "/quickrun/startup.bat";
+	private static final String PATH_START_UP_BAT_TEMP = System.getProperty("user.dir") + "/startup.bat";
 
 	private static final String START_UP_REG_LOCATION = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
 
